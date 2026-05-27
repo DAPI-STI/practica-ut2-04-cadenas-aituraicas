@@ -14,4 +14,12 @@ def phone_core(s: str) -> str:
     - La parte central debe ser numérica.
     """
     # TODO: usa .strip(), .split("-") y validaciones con .isdigit() y startswith("+")
-    raise NotImplementedError("Implementa phone_core(s)")
+    parts = s.strip().split("-")
+    if len(parts) != 3:
+        raise ValueError("El teléfono debe tener exactamente 3 partes separadas por '-'")
+    prefix, number, extension = parts
+    if not prefix.startswith("+"):
+        raise ValueError("La primera parte debe comenzar por '+'")
+    if not number.isdigit():
+        raise ValueError("La parte central debe ser numérica")
+    return number
